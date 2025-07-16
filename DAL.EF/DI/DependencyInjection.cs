@@ -1,4 +1,5 @@
 ﻿using DAL.EF.Context;
+using DAL.EF.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,12 @@ namespace DAL.EF.DI
             var config = configuration["ConnectionStrings:DefaultConnectionString"];
 
             serviceCollection.AddDbContext<AppDbContext>(config => config.UseNpgsql(configuration["ConnectionStrings:DefaultConnectionString"]));
-            //serviceCollection.AddScoped<IVideoViewsDal, VideoViewsDal>();
+
+            serviceCollection.AddScoped<IUserRepository, UserRepository>();
+            serviceCollection.AddScoped<INutrientRepository, NutrientRepository>();
+            serviceCollection.AddScoped<IRecomendationRepository, RecomendationRepository>();
+            serviceCollection.AddScoped<IDiagnosticRepository, DiagnosticRepository>();
+            serviceCollection.AddScoped<INutrientConsumptionRepository, NutrientConsumptionRepository>();
 
             return serviceCollection;
         }
