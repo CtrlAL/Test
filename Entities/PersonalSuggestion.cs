@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    internal class PersonalSuggestion : IEntity<int>
+    public class PersonalSuggestion : IEntity<int>
     {
         public int Id { get ; set; }
         public int DiagnosticId { get ; set; }

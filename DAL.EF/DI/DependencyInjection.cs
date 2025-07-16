@@ -19,6 +19,8 @@ namespace DAL.EF.DI
             serviceCollection.AddScoped<IRecomendationRepository, RecomendationRepository>();
             serviceCollection.AddScoped<IDiagnosticRepository, DiagnosticRepository>();
             serviceCollection.AddScoped<INutrientConsumptionRepository, NutrientConsumptionRepository>();
+            serviceCollection.AddScoped<IProductRepository, ProductRepository>();
+            serviceCollection.AddScoped<IPersonalSuggestionRepository, PersonalSuggestionRepository>();
 
             return serviceCollection;
         }

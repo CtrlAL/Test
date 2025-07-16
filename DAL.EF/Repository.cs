@@ -1,12 +1,14 @@
 ﻿using DAL.EF.Context;
 using Entities;
+using Filters;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.EF
 {
-    public class Repository<T, TId> : IRepository<T, TId>
+    public abstract class Repository<T, TId, TFilter> : IRepository<T, TId, TFilter>
         where T : class, IEntity<TId>
         where TId : notnull
+        where TFilter : AbstractFilter
     {
         private readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
@@ -48,6 +50,23 @@ namespace DAL.EF
         protected IQueryable<T> GetDbObjects()
         {
             return _context.Set<T>().AsNoTracking();
+        }
+
+        protected abstract IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
+
+        public async Task<IList<T>> GetByIdFilter(TFilter filter) 
+        {
+            var objects = GetDbObjects();
+
+            objects = FilterObjects(objects, filter)
+                .Skip(filter.StartIndex);
+
+            if (filter.Count.HasValue)
+            {
+                objects.Take(filter.Count.Value);
+            }
+
+            return await objects.ToListAsync();
         }
     }
 }

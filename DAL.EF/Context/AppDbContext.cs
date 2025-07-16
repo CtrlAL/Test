@@ -10,6 +10,9 @@ namespace DAL.EF.Context
         public DbSet<Nutrient> Nutrients { get; set; }
         public DbSet<NutrientConsumption> NutrientConsumptions { get; set; }
         public DbSet<Recomdendation> Recomdendations { get; set; }
+        public DbSet<PersonalSuggestion> PersonalSuggestions { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<NutrientContains> NutrientContains { get; set; }
 
         public AppDbContext()
         {

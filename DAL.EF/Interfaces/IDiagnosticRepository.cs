@@ -2,7 +2,7 @@
 
 namespace DAL.EF.Interfaces
 {
-    public interface IDiagnosticRepository : IRepository<Diagnostic, int>
+    public interface IDiagnosticRepository : IRepository<Diagnostic, int, DiagnosticRepository>
     {
     }
 }
