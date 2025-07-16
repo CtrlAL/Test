@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class Diagnostic
+    public class Diagnostic : IEntity<int>
     {
         public int Id { get; set; }
         public int UserId { get; set; }

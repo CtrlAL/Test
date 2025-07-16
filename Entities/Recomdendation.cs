@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class Recomdendation
+    public class Recomdendation : IEntity<int>
     {
         public int Id { get; set; }
         public int UserId { get; set; }
