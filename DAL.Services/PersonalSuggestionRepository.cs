@@ -13,6 +13,16 @@ namespace DAL.Services
 
 		public override IQueryable<PersonalSuggestion> FilterObjects(IQueryable<PersonalSuggestion> entities, PersonalSuggestionFilter filter)
 		{
+			if (filter.DiagnotsitcId.HasValue)
+			{
+				entities = entities.Where(x => x.DiagnosticId == filter.DiagnotsitcId);
+			}
+
+			if (filter.NutrientId.HasValue)
+			{
+				entities = entities.Where(x => x.Products.Any(y => y.Compound.Any(x => x.NutrientId == filter.NutrientId)));
+			}
+
 			return entities;
 		}
 	}

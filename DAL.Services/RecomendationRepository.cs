@@ -13,7 +13,17 @@ namespace DAL.Services
 
 		public override IQueryable<Recomdendation> FilterObjects(IQueryable<Recomdendation> entities, RecomendationFilter filter)
         {
-            return entities;
+            if (filter.UserId.HasValue)
+            {
+                entities = entities.Where(x => x.UserId == filter.UserId);
+            }
+
+			if (filter.NutrientId.HasValue)
+			{
+                entities = entities.Where(x => x.NutrientId == filter.NutrientId);
+			}
+
+			return entities;
         }
     }
 }

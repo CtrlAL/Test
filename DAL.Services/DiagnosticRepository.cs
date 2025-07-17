@@ -13,6 +13,11 @@ namespace DAL.Services
 
 		public override IQueryable<Diagnostic> FilterObjects(IQueryable<Diagnostic> entities, DiagnosticFilter filter)
         {
+            if (filter.UserId.HasValue)
+            {
+                entities = entities.Where(x => x.UserId == filter.UserId);
+            }
+
             return entities;
         }
     }

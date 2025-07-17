@@ -13,6 +13,11 @@ namespace DAL.Services
 
 		public override IQueryable<Product> FilterObjects(IQueryable<Product> entities, ProductFilter filter)
         {
+            if (filter.NutrientId.HasValue)
+            {
+                entities = entities.Where(x => x.Compound.Any(y => y.NutrientId == filter.NutrientId));
+            }
+
             return entities;
         }
     }
