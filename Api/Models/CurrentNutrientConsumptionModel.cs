@@ -5,7 +5,7 @@ namespace Api.Models
 	public class CurrentNutrientConsumptionModel
 	{
 		public int Id { get; set; }
-		public int Name { get; set; }
+		public string Name { get; set; }
 		public float CurrentCount { get; set; }
 		public float NormCount { get; set; }
 

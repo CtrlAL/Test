@@ -1,4 +1,4 @@
-CREATE TABLE "Nutrients" (
+﻿CREATE TABLE "Nutrients" (
     "Id" SERIAL PRIMARY KEY,
     "Name" VARCHAR(255) NOT NULL,
     "Measure" VARCHAR(50) NOT NULL
@@ -10,22 +10,13 @@ CREATE TABLE "Products" (
 );
 
 CREATE TABLE "Users" (
-    "Id" SERIAL PRIMARY KEY,
-    "DiagnosticId" INT
+    "Id" SERIAL PRIMARY KEY
 );
 
 CREATE TABLE "Diagnostics" (
     "Id" SERIAL PRIMARY KEY,
-    "UserId" INT
+    "UserId" INT NOT NULL REFERENCES "Users"("Id")
 );
-
-ALTER TABLE "Users"
-ADD CONSTRAINT fk_user_diagnostic
-FOREIGN KEY ("DiagnosticId") REFERENCES "Diagnostics"("Id");
-
-ALTER TABLE "Diagnostics"
-ADD CONSTRAINT fk_diagnostic_user
-FOREIGN KEY ("UserId") REFERENCES "Users"("Id");
 
 CREATE TABLE "Recommendations" (
     "Id" SERIAL PRIMARY KEY,
@@ -46,10 +37,10 @@ CREATE TABLE "PersonalSuggestions" (
     "DiagnosticId" INT NOT NULL REFERENCES "Diagnostics"("Id")
 );
 
-CREATE TABLE "PersonalSuggestionProducts" (
-    "PersonalSuggestionId" INT NOT NULL REFERENCES "PersonalSuggestions"("Id"),
+CREATE TABLE "ProductPersonalSuggestions" (
     "ProductId" INT NOT NULL REFERENCES "Products"("Id"),
-    PRIMARY KEY ("PersonalSuggestionId", "ProductId")
+    "ProductSuggestionId" INT NOT NULL REFERENCES "PersonalSuggestions"("Id"),
+    PRIMARY KEY ("ProductId", "ProductSuggestionId")
 );
 
 CREATE TABLE "NutrientConsumptions" (
@@ -58,3 +49,6 @@ CREATE TABLE "NutrientConsumptions" (
     "NutrientId" INT NOT NULL REFERENCES "Nutrients"("Id"),
     "Count" FLOAT NOT NULL
 );
+
+ALTER TABLE "Users"
+ADD COLUMN IF NOT EXISTS "DiagnosticId" INT REFERENCES "Diagnostics"("Id");
