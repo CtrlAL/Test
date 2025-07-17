@@ -69,5 +69,18 @@ namespace DAL.Services
         }
 
 		public abstract IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
-	}
+
+        public async Task AddListAsync(IList<T> entity)
+        {
+            await _dbSet.AddRangeAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateListAsync(IList<T> entity)
+        {
+            _dbSet.AttachRange(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+    }
 }

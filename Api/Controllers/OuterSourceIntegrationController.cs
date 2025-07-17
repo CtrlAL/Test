@@ -1,6 +1,7 @@
-﻿using Api.Models;
-using BL.Services.Interfaces;
+﻿using BL.Services.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
@@ -8,27 +9,42 @@ namespace Api.Controllers
     [Route("[controller]")]
     public class OuterSourceIntegrationController : ControllerBase
     {
-        private readonly IPersonalSuggestionBL _personalSuggestionBL;
-        private readonly ICurrentDailyConsumptionBL _currentDailyConsumptionBL;
-        private readonly INewDailyConsumptionBL _newDailyConsumptionBL;
+        private readonly IDiagnosticBL _diagnosticBL;
 
-        public OuterSourceIntegrationController(IPersonalSuggestionBL personalSuggestionBL,
-            INewDailyConsumptionBL newDailyConsumptionBL,
-            ICurrentDailyConsumptionBL currentDailyConsumptionBL)
+        public OuterSourceIntegrationController(IDiagnosticBL diagnosticBL)
         {
-            _personalSuggestionBL = personalSuggestionBL;
-            _currentDailyConsumptionBL = currentDailyConsumptionBL;
-            _newDailyConsumptionBL = newDailyConsumptionBL;
+            _diagnosticBL = diagnosticBL;
         }
 
-        [HttpPost("get-current-consumption/{userId}")]
-        public async Task<ActionResult<int>> GetCurrent(IFormFile jsonFile)
+        [HttpPost("post-current-consumption/{userId}")]
+        public async Task<ActionResult<int>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
         {
             if (jsonFile.ContentType != "application/json") 
             {
                 return BadRequest("Wrong file type");
             }
 
+            if (!jsonFile.FileName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            {
+                return BadRequest("Invalid file format. Only JSON files are allowed.");
+            }
+
+            var result = await _diagnosticBL.TryGetByUserId(userId);
+
+            using (var reader = new StreamReader(jsonFile.OpenReadStream()))
+            {
+                string json = await reader.ReadToEndAsync();
+                var objects = JsonConvert.DeserializeObject<NutrientConsumption>(json);
+
+                if (result.exist)
+                {
+                    
+                }
+                else
+                {
+
+                }
+            }
 
             return Ok(4);
         }
