@@ -12,10 +12,12 @@ namespace Api.Controllers
     public class OuterSourceIntegrationController : ControllerBase
     {
         private readonly IDiagnosticBL _diagnosticBL;
+        private readonly INutrientConsumptionBL _nutrientConsumptionBL;
 
-        public OuterSourceIntegrationController(IDiagnosticBL diagnosticBL)
+        public OuterSourceIntegrationController(IDiagnosticBL diagnosticBL, INutrientConsumptionBL nutrientConsumptionBL)
         {
             _diagnosticBL = diagnosticBL;
+            _nutrientConsumptionBL = nutrientConsumptionBL;
         }
 
         [HttpPost("post-current-consumption/{userId}")]

@@ -1,6 +1,5 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace DAL.EF.Context
 {
