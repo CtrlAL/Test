@@ -1,5 +1,5 @@
 ﻿using BL.Services.Interfaces;
-using DAL.EF.Interfaces;
+using DAL.Services.Interfaces;
 using Entities.MapTypes;
 
 namespace BL.Services

@@ -3,7 +3,7 @@ using Entities;
 using Filters;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.EF
+namespace DAL.Services
 {
     public abstract class Repository<T, TId, TFilter> : IRepository<T, TId, TFilter>
         where T : class, IEntity<TId>

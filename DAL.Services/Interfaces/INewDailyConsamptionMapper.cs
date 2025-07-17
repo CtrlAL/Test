@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Entities.MapTypes;
 
-namespace DAL.EF.Interfaces
+namespace DAL.Services.Interfaces
 {
 	public interface INewDailyConsamptionMapper : IEntityMaper<NewDailyConsamption, Diagnostic, int>
 	{

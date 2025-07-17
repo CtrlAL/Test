@@ -1,4 +1,5 @@
 ﻿using Api.Models;
+using BL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -7,17 +8,22 @@ namespace Api.Controllers
 	[Route("[controller]")]
 	public class NutritionQualityAssessmentController : ControllerBase
 	{
-		private readonly ILogger<NutritionQualityAssessmentController> _logger;
+		private readonly IPersonalSuggestionBL _personalSuggestionBL;
+		private readonly ICurrentDailyConsumptionBL _currentDailyConsumptionBL;
+		private readonly INewDailyConsumptionBL _newDailyConsumptionBL;
 
-		public NutritionQualityAssessmentController(ILogger<NutritionQualityAssessmentController> logger)
+		public NutritionQualityAssessmentController(IPersonalSuggestionBL personalSuggestionBL, 
+			INewDailyConsumptionBL newDailyConsumptionBL, 
+			ICurrentDailyConsumptionBL currentDailyConsumptionBL)
 		{
-			_logger = logger;
+			_personalSuggestionBL = personalSuggestionBL;
+			_currentDailyConsumptionBL = currentDailyConsumptionBL;
+			_newDailyConsumptionBL = newDailyConsumptionBL;	
 		}
 
 		[HttpGet("get-current-consumption/{userId}")]
 		public async Task<ActionResult<CurrentDailyConsumptionModel>> GetCurrent([FromRoute] int userId)
 		{
-
 
 			return Ok(new());
 		}

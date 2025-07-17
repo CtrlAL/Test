@@ -1,4 +1,4 @@
-﻿namespace DAL.EF
+﻿namespace DAL.Services
 {
     public interface IRepository<T, TId, TFilter> 
         where T : class

@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Filters;
 
-namespace DAL.EF.Interfaces
+namespace DAL.Services.Interfaces
 {
     public interface INutrientRepository : IRepository<Nutrient, int, NutrientFilter>
     {

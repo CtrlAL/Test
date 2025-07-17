@@ -1,8 +1,7 @@
-﻿using DAL.EF.Interfaces;
+﻿using DAL.Services.Interfaces;
 using Entities.MapTypes;
-using Microsoft.EntityFrameworkCore;
 
-namespace DAL.EF
+namespace DAL.Services
 {
 	public class CurrentDailyConsamptionMapper : ICurrentDailyConsamptionMapper
 	{

@@ -2,7 +2,7 @@
 
 namespace BL.Services.Interfaces
 {
-	internal interface INewCurrentDailyConsumptionBL : IGetConsamption<NewDailyConsamption>
+	public interface INewDailyConsumptionBL : IGetConsamption<NewDailyConsamption>
 	{
 	}
 }

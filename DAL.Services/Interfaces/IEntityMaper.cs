@@ -1,6 +1,6 @@
 ﻿using Entities;
 
-namespace DAL.EF.Interfaces
+namespace DAL.Services.Interfaces
 {
 	public interface IEntityMaper<TMap, TEnity, TId>
 		where TMap : class

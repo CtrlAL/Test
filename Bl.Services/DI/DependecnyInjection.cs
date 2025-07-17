@@ -1,5 +1,4 @@
 ﻿using BL.Services.Interfaces;
-using DAL.EF.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BL.Services.DI

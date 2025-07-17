@@ -1,9 +1,9 @@
 ﻿using DAL.EF.Context;
-using DAL.EF.Interfaces;
+using DAL.Services.Interfaces;
 using Entities;
 using Filters;
 
-namespace DAL.EF
+namespace DAL.Services
 {
     public class DiagnosticRepository : Repository<Diagnostic, int, DiagnosticFilter>, IDiagnosticRepository
     {

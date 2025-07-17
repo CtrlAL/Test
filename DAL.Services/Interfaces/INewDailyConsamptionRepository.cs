@@ -1,6 +1,6 @@
 ﻿using Entities.MapTypes;
 
-namespace DAL.EF.Interfaces
+namespace DAL.Services.Interfaces
 {
 	public interface INewDailyConsamptionRepository : IRepository<NewDailyConsamption, int, object>
 	{
