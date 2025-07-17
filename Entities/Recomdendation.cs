@@ -5,15 +5,15 @@
         public int Id { get; set; }
         public int UserId { get; set; }
         public int NutrientId { get; set; }
-        public float RecomendedCount { get; set; }
+        public float RecommendedCount { get; set; }
         public User User { get; set; }
         public Nutrient Nutrient { get; set; }
 
-        public Recommendation(int id,  int userId, float recomdendedCount)
+        public Recommendation(int id,  int userId, float recommendedCount)
         {
             Id = id;
             UserId = userId;
-            RecomendedCount = recomdendedCount;
+            RecommendedCount = recommendedCount;
         }
     }
 }

@@ -11,7 +11,7 @@
 		public NewNutrientConsumption(NutrientConsumption currentNutrientConsamption, Recommendation recomdendation, NutrientContains? productNutrientContains)
 		{
 			var productNutrientContainCount = productNutrientContains != null ? productNutrientContains.Count : 0;
-			var nededNutrition = recomdendation.RecomendedCount - currentNutrientConsamption.Count - productNutrientContainCount;
+			var nededNutrition = recomdendation.RecommendedCount - currentNutrientConsamption.Count - productNutrientContainCount;
 
 			Id = currentNutrientConsamption.Id;
 			Name = currentNutrientConsamption.Nutrient.Name;

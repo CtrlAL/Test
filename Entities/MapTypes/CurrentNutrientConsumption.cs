@@ -12,7 +12,7 @@
             Id = currentConsumption.Id;
             Name = currentConsumption.Nutrient.Name;
             CurrentCount = currentConsumption.Count;
-            NormCount = recomdendation.RecomendedCount;
+            NormCount = recomdendation.RecommendedCount;
         }
     }
 }
