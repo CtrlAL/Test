@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DAL.EF.DI
+namespace DAL.Services.DI
 {
     public static partial class DependencyInjection
     {

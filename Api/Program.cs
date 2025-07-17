@@ -1,4 +1,4 @@
-using DAL.EF.DI;
+using DAL.Services.DI;
 using BL.Services.DI;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Api.Helpers;
