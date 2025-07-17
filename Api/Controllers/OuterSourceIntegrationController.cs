@@ -44,14 +44,17 @@ namespace Api.Controllers
 
                     if (result.exist)
                     {
+                        nutrientConsumptions.ForEach(x => x.DiagnosticId = result.diagnostic.Id);
                         await _nutrientConsumptionBL.UpdateListAsync(nutrientConsumptions);
                     }
                     else
                     {
-                        await _diagnosticBL.AddAsync(new Diagnostic
+                        var id = await _diagnosticBL.AddAsync(new Diagnostic
                         {
                             UserId = userId,
                         });
+
+                        nutrientConsumptions.ForEach(x => x.DiagnosticId = id);
 
                         await _nutrientConsumptionBL.AddListAsync(nutrientConsumptions);
                     }
