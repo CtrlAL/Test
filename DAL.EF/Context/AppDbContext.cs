@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DAL.EF.Context
 {
@@ -25,7 +26,14 @@ namespace DAL.EF.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<Product>(b =>
+			{
+				b.HasMany(u => u.PersonalSuggestions)
+					.WithMany(x => x.Products)
+					.UsingEntity<ProductPersonalSuggestion>();
+			});
+
+			base.OnModelCreating(modelBuilder);
         }
     }
 }
