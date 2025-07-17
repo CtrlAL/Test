@@ -44,18 +44,16 @@ namespace Api.Controllers
 
                     if (result.exist)
                     {
-                        result.diagnostic.NutrientConsumptions = nutrientConsumptions;
-                        await _diagnosticBL.UpdateAsync(result.diagnostic);
+                        await _nutrientConsumptionBL.UpdateListAsync(nutrientConsumptions);
                     }
                     else
                     {
-                        result.diagnostic = new Diagnostic
+                        await _diagnosticBL.AddAsync(new Diagnostic
                         {
-                            Id = 0,
-                            NutrientConsumptions = nutrientConsumptions
-                        };
+                            UserId = userId,
+                        });
 
-                        await _diagnosticBL.AddAsync(result.diagnostic);
+                        await _nutrientConsumptionBL.AddListAsync(nutrientConsumptions);
                     }
                 }
             }

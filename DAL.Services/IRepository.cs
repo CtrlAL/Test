@@ -7,9 +7,9 @@
     {
         ValueTask<T> GetByIdAsync(TId id);
         Task<IList<T>> GetByIdFilter(TFilter filter);
-        Task AddAsync(T entity);
+        Task<TId> AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task AddListAsync(IList<T> entity);
+        Task<IList<TId>> AddListAsync(IList<T> entity);
         Task UpdateListAsync(IList<T> entity);
         Task DeleteAsync(TId id);
         internal IQueryable<T> GetDbObjects();

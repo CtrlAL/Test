@@ -38,5 +38,15 @@ namespace BL.Services
 		{
 			return _repository.UpdateAsync(entity);
 		}
-	}
+
+        public Task UpdateListAsync(IList<PersonalSuggestion> entities)
+        {
+            return _repository.UpdateListAsync(entities);
+        }
+
+        public Task AddListAsync(IList<PersonalSuggestion> entities)
+        {
+            return _repository.AddListAsync(entities);
+        }
+    }
 }

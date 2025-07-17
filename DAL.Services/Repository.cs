@@ -25,10 +25,12 @@ namespace DAL.Services
             return await _dbSet.FindAsync(id) ?? throw new EntityNotFound("Entity not found");
         }
 
-        public virtual async Task AddAsync(T entity)
+        public virtual async Task<TId> AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
+
+            return entity.Id;
         }
 
         public virtual async Task UpdateAsync(T entity)
@@ -70,10 +72,12 @@ namespace DAL.Services
 
 		public abstract IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
 
-        public async Task AddListAsync(IList<T> entity)
+        public async Task<IList<TId>> AddListAsync(IList<T> entity)
         {
             await _dbSet.AddRangeAsync(entity);
             await _context.SaveChangesAsync();
+
+            return entity.Select(x => x.Id).ToList();
         }
 
         public async Task UpdateListAsync(IList<T> entity)

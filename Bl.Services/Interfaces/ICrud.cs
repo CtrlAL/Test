@@ -11,6 +11,8 @@ namespace BL.Services.Interfaces
 		Task<IList<TEntity>> GetByIdFilter(TFilter filter);
 		Task AddAsync(TEntity entity);
 		Task UpdateAsync(TEntity entity);
-		Task DeleteAsync(TId id);
+        Task AddListAsync(IList<TEntity> entities);
+        Task UpdateListAsync(IList<TEntity> entities);
+        Task DeleteAsync(TId id);
 	}
 }
