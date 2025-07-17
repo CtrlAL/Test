@@ -3,7 +3,7 @@ using Entities.MapTypes;
 
 namespace DAL.Services.Interfaces
 {
-	public interface INewDailyConsamptionMapper : IEntityMaper<NewDailyConsamption, Diagnostic, int>
+	public interface INewDailyConsamptionMapper : IEntityMaper<NewDailyConsumption, Diagnostic, int>
 	{
 	}
 }

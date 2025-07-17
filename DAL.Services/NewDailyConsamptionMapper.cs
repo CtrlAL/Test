@@ -19,7 +19,7 @@ namespace DAL.Services
 			_productRepository = productRepository;
 		}
 
-		public async ValueTask<NewDailyConsamption> GetByIdAsync(int id)
+		public async ValueTask<NewDailyConsumption> GetByIdAsync(int id)
 		{
 			var consumptions = _consumptionRepository.GetDbObjects();
 			var recomendations = _recomendationRepository.GetDbObjects();
@@ -42,7 +42,7 @@ namespace DAL.Services
 				(cr, p) => new NewNutrientConsumption(cr.Consumption, cr.Recommendation, p)
 			);
 
-			return new NewDailyConsamption
+			return new NewDailyConsumption
 			{
 				Id = id,
 				Nutrient = query,
