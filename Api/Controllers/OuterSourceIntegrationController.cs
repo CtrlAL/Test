@@ -1,4 +1,5 @@
-﻿using BL.Services.Interfaces;
+﻿using Api.Models.Response;
+using BL.Services.Interfaces;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("post-current-consumption/{userId}")]
-        public async Task<ActionResult<bool>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
+        public async Task<ActionResult<ApiResponse<bool>>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
         {
             if (jsonFile.ContentType != "application/json") 
             {
@@ -57,10 +58,10 @@ namespace Api.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return Ok(ApiResponse<bool>.Fail($"Server error: {ex.Message}"));
             }
 
-            return Ok(true);
+            return Ok(ApiResponse<bool>.Success(true));
         }
     }
 }
