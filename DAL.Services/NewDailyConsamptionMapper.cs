@@ -1,5 +1,6 @@
 ﻿using DAL.Services.Interfaces;
 using Entities.MapTypes;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Services
 {
@@ -27,7 +28,7 @@ namespace DAL.Services
 				.Where(x => x.PersonalSuggestions.Any(x => x.DiagnosticId == id))
 				.SelectMany(x => x.Compound);
 
-			var query = consumptions
+			var query = await consumptions
 			.Where(c => c.Diagnostic.UserId == id)
 			.Join(
 				recomendations,
@@ -39,8 +40,15 @@ namespace DAL.Services
 				nutrientContains,
 				cr => cr.Recommendation.NutrientId,
 				cp => cp.NutrientId,
-				(cr, p) => new NewNutrientConsumption(cr.Consumption, cr.Recommendation, p)
-			);
+				(cr, p) => new NewNutrientConsumption
+				{
+                    Id = cr.Consumption.Id,
+                    Name = cr.Consumption.Nutrient.Name,
+                    CurrentCount = cr.Consumption.Count,
+                    FromSuggestionCount = p != null ? p.Count : 0,
+                    FromNutrition = Math.Max(cr.Recommendation.RecommendedCount - cr.Consumption.Count - (p != null ? p.Count : 0),0)
+                }
+            ).ToListAsync();
 
 			return new NewDailyConsumption
 			{
