@@ -80,10 +80,15 @@ namespace DAL.Services
             return entity.Select(x => x.Id).ToList();
         }
 
-        public async Task UpdateListAsync(IList<T> entity)
+        public async Task UpdateListAsync(IList<T> entities)
         {
-            _dbSet.AttachRange(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            _dbSet.AttachRange(entities);
+
+            foreach (var entity in entities)
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+            }
+
             await _context.SaveChangesAsync();
         }
     }
