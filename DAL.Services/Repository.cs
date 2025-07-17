@@ -52,8 +52,6 @@ namespace DAL.Services
             return _context.Set<T>().AsNoTracking();
         }
 
-        protected abstract IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
-
         public async Task<IList<T>> GetByIdFilter(TFilter filter) 
         {
             var objects = GetDbObjects();
@@ -68,5 +66,7 @@ namespace DAL.Services
 
             return await objects.ToListAsync();
         }
-    }
+
+		public abstract IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
+	}
 }

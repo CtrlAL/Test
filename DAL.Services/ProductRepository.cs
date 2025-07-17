@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-        protected override IQueryable<Product> FilterObjects(IQueryable<Product> entities, ProductFilter filter)
+		public override IQueryable<Product> FilterObjects(IQueryable<Product> entities, ProductFilter filter)
         {
             return entities;
         }

@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-		protected override IQueryable<PersonalSuggestion> FilterObjects(IQueryable<PersonalSuggestion> entities, PersonalSuggestionFilter filter)
+		public override IQueryable<PersonalSuggestion> FilterObjects(IQueryable<PersonalSuggestion> entities, PersonalSuggestionFilter filter)
 		{
 			return entities;
 		}

@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-        protected override IQueryable<Diagnostic> FilterObjects(IQueryable<Diagnostic> entities, DiagnosticFilter filter)
+		public override IQueryable<Diagnostic> FilterObjects(IQueryable<Diagnostic> entities, DiagnosticFilter filter)
         {
             return entities;
         }

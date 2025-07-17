@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-        protected override IQueryable<Nutrient> FilterObjects(IQueryable<Nutrient> entities, NutrientFilter filter)
+		public override IQueryable<Nutrient> FilterObjects(IQueryable<Nutrient> entities, NutrientFilter filter)
         {
             return entities;
         }

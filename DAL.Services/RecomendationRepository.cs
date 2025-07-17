@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-        protected override IQueryable<Recomdendation> FilterObjects(IQueryable<Recomdendation> entities, RecomendationFilter filter)
+		public override IQueryable<Recomdendation> FilterObjects(IQueryable<Recomdendation> entities, RecomendationFilter filter)
         {
             return entities;
         }

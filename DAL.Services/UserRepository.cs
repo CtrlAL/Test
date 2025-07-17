@@ -11,7 +11,7 @@ namespace DAL.Services
         {
         }
 
-        protected override IQueryable<User> FilterObjects(IQueryable<User> entities, UserFilter filter)
+        public override IQueryable<User> FilterObjects(IQueryable<User> entities, UserFilter filter)
         {
             return entities;
         }

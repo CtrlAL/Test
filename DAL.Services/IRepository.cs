@@ -11,5 +11,6 @@
         Task UpdateAsync(T entity);
         Task DeleteAsync(TId id);
         internal IQueryable<T> GetDbObjects();
+        internal IQueryable<T> FilterObjects(IQueryable<T> entities, TFilter filter);
 	}
 }
