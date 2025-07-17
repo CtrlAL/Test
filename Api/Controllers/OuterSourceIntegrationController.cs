@@ -1,4 +1,5 @@
-﻿using Api.Models.Response;
+﻿using Api.Models;
+using Api.Models.Response;
 using BL.Services.Interfaces;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("post-current-consumption/{userId}")]
-        public async Task<ActionResult<ApiResponse<bool>>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
+        public async Task<ActionResult<ApiResponse<bool>>> FromJson(IFormFile jsonFile, [FromRoute] int userId)
         {
             if (jsonFile.ContentType != "application/json") 
             {
@@ -62,6 +63,20 @@ namespace Api.Controllers
             }
 
             return Ok(ApiResponse<bool>.Success(true));
+        }
+
+        [HttpGet("post-current-consumption/{userId}")]
+        public async Task<ActionResult<ApiResponse<DiagnosticModel>>> GetByUserId([FromRoute] int userId)
+        {
+            var (entity, exist) = await _diagnosticBL.TryGetByUserId(userId);
+
+            if (exist)
+            {
+                var response = DiagnosticModel.FromEntity(entity);
+                return Ok(ApiResponse<DiagnosticModel>.Success(response));
+            }
+
+            return Ok(ApiResponse<DiagnosticModel>.Fail("Entity not found", "UserId"));
         }
     }
 }

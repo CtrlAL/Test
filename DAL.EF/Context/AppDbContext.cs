@@ -37,7 +37,10 @@ namespace DAL.EF.Context
 				b.HasOne(d => d.PersonalSuggestion)
 				 .WithOne(p => p.Diagnostic)
                  .HasForeignKey<PersonalSuggestion>(p => p.DiagnosticId);
-			});
+
+                b.Navigation(x => x.NutrientConsumptions)
+				 .AutoInclude();
+            });
 
 			modelBuilder.Entity<NutrientConsumption>(b =>
 			{
