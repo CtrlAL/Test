@@ -32,6 +32,10 @@ namespace DAL.EF.Context
 				b.HasOne(x => x.User)
 				 .WithMany()
 				 .HasForeignKey(x => x.UserId);
+
+				b.HasOne(d => d.PersonalSuggestion)
+				 .WithOne(p => p.Diagnostic)
+                 .HasForeignKey<PersonalSuggestion>(p => p.DiagnosticId);
 			});
 
 			modelBuilder.Entity<NutrientConsumption>(b =>
@@ -67,15 +71,11 @@ namespace DAL.EF.Context
 				 .HasForeignKey(x => x.ProductId);
 			});
 
-			modelBuilder.Entity<ProductPersonalSuggestion>(b =>
+			modelBuilder.Entity<Product>(b =>
 			{
-				b.HasKey(x => new { x.ProductId, x.ProductSuggestionId });
-				b.HasOne(x => x.Product)
-				 .WithMany(x => x.ProductPersonalSuggestions)
-				 .HasForeignKey(x => x.ProductId);
-				b.HasOne(x => x.ProductSuggestion)
-				 .WithMany(x => x.ProductPersonalSuggestions)
-				 .HasForeignKey(x => x.ProductSuggestionId);
+				b.HasMany(x => x.PersonalSuggestions)
+				.WithMany(x => x.Products)
+				.UsingEntity<ProductPersonalSuggestion>();
 			});
 
 			base.OnModelCreating(modelBuilder);

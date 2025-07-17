@@ -22,7 +22,10 @@ namespace DAL.Services.DI
             serviceCollection.AddScoped<IProductRepository, ProductRepository>();
             serviceCollection.AddScoped<IPersonalSuggestionRepository, PersonalSuggestionRepository>();
 
-            return serviceCollection;
+			serviceCollection.AddScoped<ICurrentDailyConsamptionMapper, CurrentDailyConsamptionMapper>();
+			serviceCollection.AddScoped<INewDailyConsamptionMapper, NewDailyConsamptionMapper>();
+
+			return serviceCollection;
         }
     }
 }
