@@ -47,7 +47,7 @@ namespace DAL.EF
             }
         }
 
-        protected IQueryable<T> GetDbObjects()
+        public IQueryable<T> GetDbObjects()
         {
             return _context.Set<T>().AsNoTracking();
         }

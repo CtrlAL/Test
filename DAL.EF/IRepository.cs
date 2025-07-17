@@ -10,5 +10,6 @@
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(TId id);
-    }
+        internal IQueryable<T> GetDbObjects();
+	}
 }

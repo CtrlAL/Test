@@ -5,8 +5,10 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<NutrientContains> Compound { get; set; }
+		public IEnumerable<ProductPersonalSuggestion> ProductPersonalSuggestions { get; set; }
+		public IEnumerable<PersonalSuggestion> PersonalSuggestions { get; set; }
 
-        public Product(int id, string name)
+		public Product(int id, string name)
         {
             Id = id;
             Name = name;
