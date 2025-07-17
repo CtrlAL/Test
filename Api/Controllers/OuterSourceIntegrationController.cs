@@ -45,7 +45,7 @@ namespace Api.Controllers
                     if (result.exist)
                     {
                         nutrientConsumptions.ForEach(x => x.DiagnosticId = result.diagnostic.Id);
-                        await _nutrientConsumptionBL.UpdateListAsync(nutrientConsumptions);
+                        await _nutrientConsumptionBL.AddListAsync(nutrientConsumptions);
                     }
                     else
                     {
@@ -62,7 +62,7 @@ namespace Api.Controllers
             }
             catch(Exception ex)
             {
-                return Ok(ApiResponse<bool>.Fail($"Server error: {ex.Message}"));
+                return Ok(ApiResponse<bool>.Fail($"Server error: {ex.Message}, {ex.InnerException.Message}"));
             }
 
             return Ok(ApiResponse<bool>.Success(true));
