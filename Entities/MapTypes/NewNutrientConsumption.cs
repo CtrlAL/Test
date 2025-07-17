@@ -8,14 +8,15 @@
 		public float FromSuggestionCount { get; set; }
 		public float FromNutrition { get; set; }
 
-		public NewNutrientConsumption(NutrientConsumption currentNutrientConsamption, Recomdendation recomdendation, NutrientContains productNutrientContains)
+		public NewNutrientConsumption(NutrientConsumption currentNutrientConsamption, Recomdendation recomdendation, NutrientContains? productNutrientContains)
 		{
-			var nededNutrition = recomdendation.RecomendedCount - currentNutrientConsamption.Count - productNutrientContains.Count;
+			var productNutrientContainCount = productNutrientContains != null ? productNutrientContains.Count : 0;
+			var nededNutrition = recomdendation.RecomendedCount - currentNutrientConsamption.Count - productNutrientContainCount;
 
 			Id = currentNutrientConsamption.Id;
 			Name = currentNutrientConsamption.Nutrient.Name;
 			CurrentCount = currentNutrientConsamption.Count;
-			FromSuggestionCount = productNutrientContains.Count;
+			FromSuggestionCount = productNutrientContainCount;
 			FromNutrition = nededNutrition > 0 ? nededNutrition : 0;
 		}
 	}
