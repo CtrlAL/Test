@@ -27,7 +27,13 @@ namespace DAL.EF.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<Diagnostic>(b =>
+            modelBuilder.Entity<NutrientConsumption>(b =>
+            {
+                b.Navigation(x => x.Nutrient)
+                 .AutoInclude();
+            });
+
+            modelBuilder.Entity<Diagnostic>(b =>
 			{
 				b.HasKey(x => x.Id);
 				b.HasOne(x => x.User)
