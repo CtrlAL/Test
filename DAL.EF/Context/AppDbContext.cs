@@ -1,6 +1,5 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace DAL.EF.Context
 {
@@ -27,7 +26,13 @@ namespace DAL.EF.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<Diagnostic>(b =>
+            modelBuilder.Entity<NutrientConsumption>(b =>
+            {
+                b.Navigation(x => x.Nutrient)
+                 .AutoInclude();
+            });
+
+            modelBuilder.Entity<Diagnostic>(b =>
 			{
 				b.HasKey(x => x.Id);
 				b.HasOne(x => x.User)
@@ -37,7 +42,10 @@ namespace DAL.EF.Context
 				b.HasOne(d => d.PersonalSuggestion)
 				 .WithOne(p => p.Diagnostic)
                  .HasForeignKey<PersonalSuggestion>(p => p.DiagnosticId);
-			});
+
+                b.Navigation(x => x.NutrientConsumptions)
+				 .AutoInclude();
+            });
 
 			modelBuilder.Entity<NutrientConsumption>(b =>
 			{

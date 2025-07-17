@@ -9,8 +9,10 @@ namespace BL.Services.Interfaces
 	{
 		ValueTask<TEntity> GetByIdAsync(TId id);
 		Task<IList<TEntity>> GetByIdFilter(TFilter filter);
-		Task AddAsync(TEntity entity);
+		Task<TId> AddAsync(TEntity entity);
 		Task UpdateAsync(TEntity entity);
-		Task DeleteAsync(TId id);
+        Task<IList<TId>> AddListAsync(IList<TEntity> entities);
+        Task UpdateListAsync(IList<TEntity> entities);
+        Task DeleteAsync(TId id);
 	}
 }

@@ -15,7 +15,8 @@ CREATE TABLE "Users" (
 
 CREATE TABLE "Diagnostics" (
     "Id" SERIAL PRIMARY KEY,
-    "UserId" INT NOT NULL REFERENCES "Users"("Id")
+    "UserId" INT NOT NULL REFERENCES "Users"("Id"),
+    "PersonalSuggestionId" INT NULL REFERENCES "PersonalSuggestions"("Id")
 );
 
 CREATE TABLE "Recommendations" (
