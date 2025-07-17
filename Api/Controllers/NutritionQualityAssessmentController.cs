@@ -24,6 +24,8 @@ namespace Api.Controllers
 		[HttpGet("get-current-consumption/{userId}")]
 		public async Task<ActionResult<CurrentDailyConsumptionModel>> GetCurrent([FromRoute] int userId)
 		{
+			var result = await _currentDailyConsumptionBL.GetConsamption(userId);
+
 
 			return Ok(new());
 		}
@@ -31,7 +33,7 @@ namespace Api.Controllers
 		[HttpGet("get-new-consumption/{userId}")]
 		public async Task<ActionResult<NewNutrientConsumptionModel>> GetNew([FromRoute] int userId)
 		{
-
+			var result = await _newDailyConsumptionBL.GetConsamption(userId);
 
 			return Ok(new());
 		}
@@ -39,6 +41,7 @@ namespace Api.Controllers
 		[HttpGet("get-suggestion/{userId}")]
 		public async Task<ActionResult<NewNutrientConsumptionModel>> GetSuggestion([FromRoute] int userId)
 		{
+			var result = await _personalSuggestionBL.GetByIdFilter(new(userId: userId));
 
 			return Ok(new());
 		}
