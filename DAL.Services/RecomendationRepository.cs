@@ -5,13 +5,13 @@ using Filters;
 
 namespace DAL.Services
 {
-    public class RecomendationRepository : Repository<Recomdendation, int, RecomendationFilter>, IRecomendationRepository
+    public class RecomendationRepository : Repository<Recommendation, int, RecomendationFilter>, IRecomendationRepository
     {
         public RecomendationRepository(AppDbContext context) : base(context)
         {
         }
 
-		public override IQueryable<Recomdendation> FilterObjects(IQueryable<Recomdendation> entities, RecomendationFilter filter)
+		public override IQueryable<Recommendation> FilterObjects(IQueryable<Recommendation> entities, RecomendationFilter filter)
         {
             if (filter.UserId.HasValue)
             {

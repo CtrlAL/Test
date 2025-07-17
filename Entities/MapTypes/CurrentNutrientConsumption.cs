@@ -7,7 +7,7 @@
         public float CurrentCount { get; set; }
         public float NormCount { get; set; }
 
-        public CurrentNutrientConsumption(NutrientConsumption currentConsumption, Recomdendation recomdendation)
+        public CurrentNutrientConsumption(NutrientConsumption currentConsumption, Recommendation recomdendation)
         {
             Id = currentConsumption.Id;
             Name = currentConsumption.Nutrient.Name;

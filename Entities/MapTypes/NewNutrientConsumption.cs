@@ -8,7 +8,7 @@
 		public float FromSuggestionCount { get; set; }
 		public float FromNutrition { get; set; }
 
-		public NewNutrientConsumption(NutrientConsumption currentNutrientConsamption, Recomdendation recomdendation, NutrientContains? productNutrientContains)
+		public NewNutrientConsumption(NutrientConsumption currentNutrientConsamption, Recommendation recomdendation, NutrientContains? productNutrientContains)
 		{
 			var productNutrientContainCount = productNutrientContains != null ? productNutrientContains.Count : 0;
 			var nededNutrition = recomdendation.RecomendedCount - currentNutrientConsamption.Count - productNutrientContainCount;

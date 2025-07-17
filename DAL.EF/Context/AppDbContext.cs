@@ -10,7 +10,7 @@ namespace DAL.EF.Context
         public DbSet<Diagnostic> Diagnostics { get; set; }
         public DbSet<Nutrient> Nutrients { get; set; }
         public DbSet<NutrientConsumption> NutrientConsumptions { get; set; }
-        public DbSet<Recomdendation> Recomdendations { get; set; }
+        public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<PersonalSuggestion> PersonalSuggestions { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<NutrientContains> NutrientContains { get; set; }
@@ -45,11 +45,11 @@ namespace DAL.EF.Context
 				 .HasForeignKey(x => x.NutrientId);
 			});
 
-			modelBuilder.Entity<Recomdendation>(b =>
+			modelBuilder.Entity<Recommendation>(b =>
 			{
 				b.HasKey(x => x.Id);
 				b.HasOne(x => x.User)
-				 .WithMany(x => x.Recomdendations)
+				 .WithMany(x => x.Recommendations)
 				 .HasForeignKey(x => x.UserId);
 				b.HasOne(x => x.Nutrient)
 				 .WithMany()

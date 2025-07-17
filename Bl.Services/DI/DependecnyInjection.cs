@@ -9,6 +9,7 @@ namespace BL.Services.DI
 		{
 			serviceCollection.AddScoped<ICurrentDailyConsumptionBL, CurrentDailyConsumptionBL>();
 			serviceCollection.AddScoped<INewDailyConsumptionBL, NewDailyConsumptionBL>();
+			serviceCollection.AddScoped<IPersonalSuggestionBL, PersonalSuggestionBL>();
 
 			return serviceCollection;
 		}
