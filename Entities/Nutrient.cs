@@ -7,7 +7,6 @@
         public string Measure {  get; set; }
 		public IEnumerable<NutrientConsumption> NutrientConsumptions { get; set; }
 		public IEnumerable<NutrientContains> NutrientContains { get; set; }
-		public IEnumerable<Product> Products { get; set; }
 		public IEnumerable<Recommendation> Recommendations { get; set; }
     }
 }

@@ -25,25 +25,35 @@ namespace Api.Controllers
 		public async Task<ActionResult<CurrentDailyConsumptionModel>> GetCurrent([FromRoute] int userId)
 		{
 			var result = await _currentDailyConsumptionBL.GetByUserId(userId);
+			var response = CurrentDailyConsumptionModel.FromEntity(result);
 
 
-			return Ok(new());
+			return Ok(response);
 		}
 
 		[HttpGet("get-new-consumption/{userId}")]
 		public async Task<ActionResult<NewNutrientConsumptionModel>> GetNew([FromRoute] int userId)
 		{
 			var result = await _newDailyConsumptionBL.GetByUserId(userId);
+            var response = NewDailyConsumptionModel.FromEntity(result);
 
-			return Ok(new());
+            return Ok(response);
 		}
 
 		[HttpGet("get-suggestion/{userId}")]
-		public async Task<ActionResult<NewNutrientConsumptionModel>> GetSuggestion([FromRoute] int userId)
+		public async Task<ActionResult<PersonalSuggestionModel>> GetSuggestion([FromRoute] int userId)
 		{
-			var result = await _personalSuggestionBL.GetByIdFilter(new(userId: userId));
+			var result = (await _personalSuggestionBL.GetByIdFilter(new(userId: userId))).FirstOrDefault();
 
-			return Ok(new());
+			if (result != null)
+			{
+                var response = PersonalSuggestionModel.FromEntity(result);
+                return Ok(response);
+			}
+			else
+			{
+				return NotFound();
+			}
 		}
 	}
 }

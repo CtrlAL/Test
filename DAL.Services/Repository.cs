@@ -1,4 +1,5 @@
-﻿using DAL.EF.Context;
+﻿using CustomExceptions;
+using DAL.EF.Context;
 using Entities;
 using Filters;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace DAL.Services
 
         public virtual async ValueTask<T> GetByIdAsync(TId id)
         {
-            return await _dbSet.FindAsync(id) ?? throw new InvalidOperationException("Entity not found");
+            return await _dbSet.FindAsync(id) ?? throw new EntityNotFound("Entity not found");
         }
 
         public virtual async Task AddAsync(T entity)

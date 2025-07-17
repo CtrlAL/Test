@@ -14,6 +14,7 @@ namespace DAL.EF.Context
         public DbSet<PersonalSuggestion> PersonalSuggestions { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<NutrientContains> NutrientContains { get; set; }
+        public DbSet<ProductPersonalSuggestion> ProductPersonalSuggestions { get; set; }
 
         public AppDbContext()
         {
@@ -45,7 +46,7 @@ namespace DAL.EF.Context
 				 .WithMany(x => x.NutrientConsumptions)
 				 .HasForeignKey(x => x.DiagnosticId);
 				b.HasOne(x => x.Nutrient)
-				 .WithMany()
+				 .WithMany(x => x.NutrientConsumptions)
 				 .HasForeignKey(x => x.NutrientId);
 			});
 
@@ -64,7 +65,7 @@ namespace DAL.EF.Context
 			{
 				b.HasKey(x => x.Id);
 				b.HasOne(x => x.Nutrient)
-				 .WithMany()
+				 .WithMany(x => x.NutrientContains)
 				 .HasForeignKey(x => x.NutrientId);
 				b.HasOne(x => x.Product)
 				 .WithMany(x => x.Compound)
@@ -78,7 +79,13 @@ namespace DAL.EF.Context
 				.UsingEntity<ProductPersonalSuggestion>();
 			});
 
-			base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<PersonalSuggestion>(b =>
+            {
+				b.Navigation(x => x.Products)
+				.AutoInclude();
+            });
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
