@@ -14,7 +14,7 @@ namespace BL.Services
 			_repository = repository;
 		}
 
-		public Task AddAsync(PersonalSuggestion entity)
+		public Task<int> AddAsync(PersonalSuggestion entity)
 		{
 			return _repository.AddAsync(entity);
 		}
@@ -44,7 +44,7 @@ namespace BL.Services
             return _repository.UpdateListAsync(entities);
         }
 
-        public Task AddListAsync(IList<PersonalSuggestion> entities)
+        public Task<IList<int>> AddListAsync(IList<PersonalSuggestion> entities)
         {
             return _repository.AddListAsync(entities);
         }

@@ -14,7 +14,7 @@ namespace BL.Services
             _repository = repository;
         }
 
-        public Task AddAsync(NutrientConsumption entity)
+        public Task<int> AddAsync(NutrientConsumption entity)
         {
             return _repository.AddAsync(entity);
         }
@@ -44,7 +44,7 @@ namespace BL.Services
             return _repository.UpdateListAsync(entities);
         }
 
-        public Task AddListAsync(IList<NutrientConsumption> entities)
+        public Task<IList<int>> AddListAsync(IList<NutrientConsumption> entities)
         {
             return _repository.AddListAsync(entities);
         }
