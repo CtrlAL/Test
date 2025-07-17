@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BL.Services.Interfaces;
+using DAL.EF.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BL.Services.DI
 {
@@ -6,6 +8,9 @@ namespace BL.Services.DI
 	{
 		public static IServiceCollection UseBL(this IServiceCollection serviceCollection)
 		{
+			serviceCollection.AddScoped<ICurrentDailyConsumptionBL, CurrentDailyConsumptionBL>();
+			serviceCollection.AddScoped<INewDailyConsumptionBL, NewDailyConsumptionBL>();
+
 			return serviceCollection;
 		}
 	}
