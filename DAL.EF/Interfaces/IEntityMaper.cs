@@ -7,6 +7,6 @@ namespace DAL.EF.Interfaces
 		where TEnity : class, IEntity<TId>
 		where TId : notnull
 	{
-		ValueTask<TMap> GetByIdAsync(TId id);
+		ValueTask<TMap> GetByIdAsync(TId diagnosticId);
 	}
 }
