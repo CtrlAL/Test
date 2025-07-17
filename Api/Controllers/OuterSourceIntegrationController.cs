@@ -17,7 +17,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("post-current-consumption/{userId}")]
-        public async Task<ActionResult<int>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
+        public async Task<ActionResult<bool>> GetCurrent(IFormFile jsonFile, [FromRoute] int userId)
         {
             if (jsonFile.ContentType != "application/json") 
             {
@@ -31,22 +31,36 @@ namespace Api.Controllers
 
             var result = await _diagnosticBL.TryGetByUserId(userId);
 
-            using (var reader = new StreamReader(jsonFile.OpenReadStream()))
+            try
             {
-                string json = await reader.ReadToEndAsync();
-                var objects = JsonConvert.DeserializeObject<NutrientConsumption>(json);
-
-                if (result.exist)
+                using (var reader = new StreamReader(jsonFile.OpenReadStream()))
                 {
-                    
-                }
-                else
-                {
+                    string json = await reader.ReadToEndAsync();
+                    var nutrientConsumptions = JsonConvert.DeserializeObject<List<NutrientConsumption>>(json);
 
+                    if (result.exist)
+                    {
+                        result.diagnostic.NutrientConsumptions = nutrientConsumptions;
+                        await _diagnosticBL.UpdateAsync(result.diagnostic);
+                    }
+                    else
+                    {
+                        result.diagnostic = new Diagnostic
+                        {
+                            Id = 0,
+                            NutrientConsumptions = nutrientConsumptions
+                        };
+
+                        await _diagnosticBL.AddAsync(result.diagnostic);
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
 
-            return Ok(4);
+            return Ok(true);
         }
     }
 }
