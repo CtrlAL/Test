@@ -38,9 +38,9 @@ CREATE TABLE "PersonalSuggestions" (
 );
 
 CREATE TABLE "ProductPersonalSuggestions" (
+    "Id" SERIAL PRIMARY KEY,
     "ProductId" INT NOT NULL REFERENCES "Products"("Id"),
-    "ProductSuggestionId" INT NOT NULL REFERENCES "PersonalSuggestions"("Id"),
-    PRIMARY KEY ("ProductId", "ProductSuggestionId")
+    "ProductSuggestionId" INT NOT NULL REFERENCES "PersonalSuggestions"("Id")
 );
 
 CREATE TABLE "NutrientConsumptions" (

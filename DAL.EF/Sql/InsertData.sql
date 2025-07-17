@@ -37,11 +37,11 @@ VALUES
 INSERT INTO "PersonalSuggestions" ("Id", "DiagnosticId")
 VALUES (1, 1);
 
-INSERT INTO "ProductPersonalSuggestions" ("ProductId", "ProductSuggestionId")
+INSERT INTO "ProductPersonalSuggestions" ("Id", "ProductId", "ProductSuggestionId")
 VALUES
-(1, 1),
-(2, 1),
-(3, 1);
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1);
 
 UPDATE "Users" SET "DiagnosticId" = 1
 WHERE "Id" = 1;
