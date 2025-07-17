@@ -1,5 +1,7 @@
 using DAL.EF.DI;
 using BL.Services.DI;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Api.Helpers;
 
 namespace WebApplication1
 {
@@ -9,9 +11,12 @@ namespace WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-            
-            builder.Services.AddEndpointsApiExplorer();
+			builder.Services.AddControllers(options =>
+			{
+				options.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseControllerNameConvention()));
+			});
+
+			builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             builder.Services.UseDAL(builder.Configuration);
