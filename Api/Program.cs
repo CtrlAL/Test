@@ -1,8 +1,9 @@
 using DAL.EF.DI;
+using BL.Services.DI;
 
 namespace WebApplication1
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
@@ -12,7 +13,9 @@ namespace WebApplication1
             
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             builder.Services.UseDAL(builder.Configuration);
+            builder.Services.UseBL();
 
             var app = builder.Build();
 
