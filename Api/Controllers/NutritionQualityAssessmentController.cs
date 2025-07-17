@@ -24,7 +24,7 @@ namespace Api.Controllers
 		[HttpGet("get-current-consumption/{userId}")]
 		public async Task<ActionResult<CurrentDailyConsumptionModel>> GetCurrent([FromRoute] int userId)
 		{
-			var result = await _currentDailyConsumptionBL.GetConsamption(userId);
+			var result = await _currentDailyConsumptionBL.GetByUserId(userId);
 
 
 			return Ok(new());
@@ -33,7 +33,7 @@ namespace Api.Controllers
 		[HttpGet("get-new-consumption/{userId}")]
 		public async Task<ActionResult<NewNutrientConsumptionModel>> GetNew([FromRoute] int userId)
 		{
-			var result = await _newDailyConsumptionBL.GetConsamption(userId);
+			var result = await _newDailyConsumptionBL.GetByUserId(userId);
 
 			return Ok(new());
 		}

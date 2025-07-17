@@ -13,9 +13,9 @@ namespace BL.Services
 			_mapper = mapper;
 		}
 
-		public ValueTask<CurrentDailyConsamption> GetConsamption(int diagnosticId)
+		public ValueTask<CurrentDailyConsamption> GetByUserId(int diagnosticId)
 		{
-			return _mapper.GetByIdAsync(diagnosticId);
+			return _mapper.GetByUserId(diagnosticId);
 		}
 	}
 }

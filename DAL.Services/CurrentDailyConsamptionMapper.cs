@@ -15,13 +15,13 @@ namespace DAL.Services
 			_recomendationRepository = recomendationRepository;
 		}
 
-		public async ValueTask<CurrentDailyConsamption> GetByIdAsync(int id)
+		public async ValueTask<CurrentDailyConsamption> GetByUserId(int id)
 		{
 			var consumptions = _consumptionRepository.GetDbObjects();
 			var recomendations = _recomendationRepository.GetDbObjects();
 
 			var query = consumptions
-			.Where(c => c.DiagnosticId == id)
+			.Where(c => c.Diagnostic.UserId == id)
 			.Join(
 				recomendations,
 				c => c.NutrientId,

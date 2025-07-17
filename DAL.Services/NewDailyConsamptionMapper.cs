@@ -19,7 +19,7 @@ namespace DAL.Services
 			_productRepository = productRepository;
 		}
 
-		public async ValueTask<NewDailyConsumption> GetByIdAsync(int id)
+		public async ValueTask<NewDailyConsumption> GetByUserId(int id)
 		{
 			var consumptions = _consumptionRepository.GetDbObjects();
 			var recomendations = _recomendationRepository.GetDbObjects();
@@ -28,7 +28,7 @@ namespace DAL.Services
 				.SelectMany(x => x.Compound);
 
 			var query = consumptions
-			.Where(c => c.DiagnosticId == id)
+			.Where(c => c.Diagnostic.UserId == id)
 			.Join(
 				recomendations,
 				c => c.NutrientId,

@@ -2,6 +2,6 @@
 {
 	public interface IGetConsamption<TGet>
 	{
-		ValueTask<TGet> GetConsamption(int diagnosticId);
+		ValueTask<TGet> GetByUserId(int userId);
 	}
 }
