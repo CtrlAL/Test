@@ -7,12 +7,5 @@
         public Diagnostic Diagnostic { get; set; }
         public IEnumerable<Product> Products { get; set; }
 		public IEnumerable<ProductPersonalSuggestion> ProductPersonalSuggestions { get; set; }
-
-		public PersonalSuggestion(int id,
-            int diagnosticId)
-        {
-            Id = id;
-            DiagnosticId = diagnosticId;
-        }
     }
 }

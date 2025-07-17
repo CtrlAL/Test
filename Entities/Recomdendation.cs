@@ -8,12 +8,5 @@
         public float RecommendedCount { get; set; }
         public User User { get; set; }
         public Nutrient Nutrient { get; set; }
-
-        public Recommendation(int id,  int userId, float recommendedCount)
-        {
-            Id = id;
-            UserId = userId;
-            RecommendedCount = recommendedCount;
-        }
     }
 }

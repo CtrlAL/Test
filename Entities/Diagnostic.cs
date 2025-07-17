@@ -8,14 +8,5 @@
 		public User User { get; set; }
 		public PersonalSuggestion PersonalSuggestion { get; set; }
         public ICollection<NutrientConsumption> NutrientConsumptions { get; set; }
-
-        public Diagnostic(int id,
-            int userId,
-            int? personalSuggestionId = null)
-        {
-            Id = id;
-            UserId = userId;
-            PersonalSuggestionId = personalSuggestionId;
-        }
     }
 }
