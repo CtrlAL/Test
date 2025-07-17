@@ -10,10 +10,12 @@
         public ICollection<NutrientConsumption> NutrientConsumptions { get; set; }
 
         public Diagnostic(int id,
-            int userId)
+            int userId,
+            int? personalSuggestionId = null)
         {
             Id = id;
             UserId = userId;
+            PersonalSuggestionId = personalSuggestionId;
         }
     }
 }
